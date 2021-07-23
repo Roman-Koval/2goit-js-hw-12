@@ -18,8 +18,11 @@ findCountryField.addEventListener('input', debounce(onInputCountryName, DEBOUNCE
 
 function onInputCountryName(event) {
   const inp = event.target.value;
+  if (inp.trim () !== "") {
+
   fetchCountries(inp)
     .then(countries => {
+     
       if (countries.length > 10) {
         addMessage('info', manyMessage);
       }
@@ -33,6 +36,7 @@ function onInputCountryName(event) {
       }
     })
     .catch(error => addMessage('failure', oopsMmessage));
+}
 }
 
 function renderCountry(markup = '') {
